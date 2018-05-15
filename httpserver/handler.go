@@ -11,8 +11,8 @@ type server struct {
 	extSrvURL *url.URL
 }
 
-// serveHTTP is an handler for an http request
-func (s *server) ServeSimpleHTTP(w http.ResponseWriter, r *http.Request) {
+// serveSimpleHTTP is an handler for an dummy http request
+func serveSimpleHTTP(w http.ResponseWriter, r *http.Request) {
 	if _, ok := r.URL.Query()["fail"]; ok {
 		w.WriteHeader(http.StatusBadRequest)
 		return

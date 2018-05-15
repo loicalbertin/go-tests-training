@@ -8,6 +8,6 @@ import (
 func runServer(extServiceURL *url.URL) error {
 	s := &server{extSrvURL: extServiceURL}
 	http.HandleFunc("/ext", s.ServeHTTPToExternal)
-	http.HandleFunc("/simple", s.ServeSimpleHTTP)
+	http.HandleFunc("/simple", serveSimpleHTTP)
 	return http.ListenAndServe(":12345", nil)
 }

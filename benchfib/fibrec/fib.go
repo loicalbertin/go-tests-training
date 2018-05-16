@@ -1,6 +1,9 @@
 package fibrec
 
-import "fmt"
+import (
+	"bytes"
+	"fmt"
+)
 
 func fibonacciRecursion(n int) int {
 	if n <= 1 {
@@ -10,9 +13,10 @@ func fibonacciRecursion(n int) int {
 }
 
 // PrintFib prints a fibonacci sequence up to maxIt iterations
-func PrintFib(maxIt int) {
+func PrintFib(maxIt int) string {
+	b := bytes.Buffer{}
 	for i := 0; i < maxIt; i++ {
-		fmt.Printf("%d ", fibonacciRecursion(i))
+		b.WriteString(fmt.Sprintf("%d ", fibonacciRecursion(i)))
 	}
-	fmt.Println()
+	return b.String()
 }

@@ -33,7 +33,10 @@ func (s *server) ServeHTTPToExternal(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
-
+	if resp.StatusCode >= 400 {
+		http.Error(w, resp.Status, resp.StatusCode)
+		return
+	}
 	b, err := ioutil.ReadAll(resp.Body)
 	defer resp.Body.Close()
 	if err != nil {

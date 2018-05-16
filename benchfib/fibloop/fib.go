@@ -1,6 +1,9 @@
 package fibloop
 
-import "fmt"
+import (
+	"bytes"
+	"fmt"
+)
 
 func fibonacciLoop(n int) int {
 	if n < 2 {
@@ -17,9 +20,10 @@ func fibonacciLoop(n int) int {
 }
 
 // PrintFib prints a fibonacci sequence up to maxIt iterations
-func PrintFib(maxIt int) {
+func PrintFib(maxIt int) string {
+	b := bytes.Buffer{}
 	for i := 0; i < maxIt; i++ {
-		fmt.Printf("%d ", fibonacciLoop(i))
+		b.WriteString(fmt.Sprintf("%d ", fibonacciLoop(i)))
 	}
-	fmt.Println()
+	return b.String()
 }

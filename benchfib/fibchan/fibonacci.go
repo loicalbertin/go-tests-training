@@ -1,6 +1,7 @@
 package fibchan
 
 import (
+	"bytes"
 	"fmt"
 )
 
@@ -19,9 +20,10 @@ func fibChan(maxIt, buffer uint) chan int {
 
 // PrintFib prints a fibonacci sequence up to maxIt iterations
 // Buffer allows to control the chanel buffering
-func PrintFib(maxIt, buffer uint) {
+func PrintFib(maxIt, buffer uint) string {
+	b := bytes.Buffer{}
 	for i := range fibChan(maxIt, buffer) {
-		fmt.Printf("%d ", i)
+		b.WriteString(fmt.Sprintf("%d ", i))
 	}
-	fmt.Println()
+	return b.String()
 }
